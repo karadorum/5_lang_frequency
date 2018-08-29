@@ -34,6 +34,7 @@ if __name__ == '__main__':
         print('file not found')
     except IndexError:
         print('name of file argument is empty')
-
+        
+    words_number = 10
     print('Самые частые слова в тексте:')
-    print_result(get_most_frequent_words(file_data), 10)
+    print_result(get_most_frequent_words(file_data), words_number)
