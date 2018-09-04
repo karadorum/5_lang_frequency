@@ -9,22 +9,19 @@ def load_data(filepath):
         return text
 
 
-def get_most_frequent_words(text):
-    symbols = re.compile("([a-zA-Zа-яА-ЯёЁ']+)")
-    text_data = symbols.findall(text)
-
+def get_all_words(text):
+    word_list = re.findall("([a-zA-Zа-яА-ЯёЁ']+)", text.lower())
     newlist = []
-    for word in text_data:
-        newlist.append(word.lower())
+    for word in word_list:
+        newlist.append(word)
 
     frequency_dict = Counter(newlist)
     return frequency_dict
 
 
-def print_result(word_dict, words_number):
+def get_most_frequent_words(word_dict, words_number):
     most_common = word_dict.most_common(words_number)
-    for pair in most_common:
-        print(pair[0], '-', pair[1])
+    return most_common
 
 
 if __name__ == '__main__':
@@ -34,7 +31,9 @@ if __name__ == '__main__':
         print('file not found')
     except IndexError:
         print('name of file argument is empty')
-        
+
     words_number = 10
+    most_frequent_words = get_most_frequent_words(get_all_words(file_data), words_number)
     print('Самые частые слова в тексте:')
-    print_result(get_most_frequent_words(file_data), words_number)
+    for word in most_frequent_words:
+        print(word[0], '-', word[1])
