@@ -9,6 +9,10 @@ The file must be in the same folder as the program.
 Example:
 ```#!bash
 $ python lang_frequency.py <filename>
+Самые частые слова в тексте:
+waka - 4
+wuku - 2
+woko - 2
 ```
 
 
