@@ -37,3 +37,6 @@ if __name__ == '__main__':
     print('Самые частые слова в тексте:')
     for word in most_frequent_words:
         print(word[0], '-', word[1])
+
+
+'''THATS ALL KIDS'''
