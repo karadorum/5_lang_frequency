@@ -9,13 +9,9 @@ def load_data(filepath):
         return text
 
 
-def get_all_words(text):
+def count_all_words(text):
     word_list = re.findall("([a-zA-Zа-яА-ЯёЁ']+)", text.lower())
-    newlist = []
-    for word in word_list:
-        newlist.append(word)
-
-    frequency_dict = Counter(newlist)
+    frequency_dict = Counter(word_list)
     return frequency_dict
 
 
@@ -28,16 +24,12 @@ if __name__ == '__main__':
     try:
         file_data = load_data(sys.argv[1])
     except FileNotFoundError:
-        print('file not found')
+        exit('file not found')
     except IndexError:
-        print('name of file argument is empty')
+        exit('name of file argument is empty')
 
     words_number = 10
-    most_frequent_words = get_most_frequent_words(get_all_words(file_data), words_number)
+    most_frequent_words = get_most_frequent_words(count_all_words(file_data), words_number)
     print('Самые частые слова в тексте:')
-    for word in most_frequent_words:
-        print(word[0], '-', word[1])
-
-
-'''THATS ALL KIDS'''
-'''THATS ALL KIDS'''
+    for word, count in most_frequent_words:
+        print(word, '-', count)
